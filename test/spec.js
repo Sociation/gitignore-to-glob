@@ -61,4 +61,9 @@ describe('gitignoreToGlob', () => {
         const result = gitignoreToGlob('node_modules', {string: true});
         assert.deepEqual(result, ['!**/node_modules', '!**/node_modules/**']);
     });
+
+    it('should not duplicate the / when path ends with /', () => {
+        const result = gitignoreToGlob('node_modules/', {string: true});
+        assert.deepEqual(result, ['!**/node_modules', '!**/node_modules/**']);
+    });
 });
